@@ -5,10 +5,28 @@
  */
 package com.sg.foundations.guessthenumber.service;
 
+import com.sg.foundations.guessthenumber.models.Game;
+import com.sg.foundations.guessthenumber.models.Round;
+import java.util.List;
+
 /**
  *
  * @author pbott
  */
 public interface GuessTheNumberServiceLayer {
+    Game createGame(int guess);
     
+    Round createRound(int gameID);
+    
+    Game getGame(int gameID);
+    
+    List<Game> getAllGames();
+    
+    List<Round> getAllRoundsByGameID(int gameID);
+    
+    int generateRandomGuess();
+    
+    int exactMatches(int guess, Game game);
+    
+    int partialMatches(int guess, Game game);
 }

@@ -5,10 +5,16 @@
  */
 package com.sg.foundations.guessthenumber.data;
 
+import com.sg.foundations.guessthenumber.models.Game;
+import java.util.List;
+
 /**
  *
  * @author pbott
  */
-public interface GuessTheNumberDao {
-    
+public interface GameDao {
+    Game createGame(int guess);
+    List<Game> getAllGames();
+    Game getGame(int gameID);
+
 }

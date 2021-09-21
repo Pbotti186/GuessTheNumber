@@ -6,6 +6,7 @@
 package com.sg.foundations.guessthenumber.controller;
 
 import com.sg.foundations.guessthenumber.models.Game;
+import com.sg.foundations.guessthenumber.models.Round;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,12 +30,22 @@ public class GuessTheNumberController {
     public GuessTheNumberController(GuessTheNumberServiceLayer service) {
         this.service = service;
     }
+    
+    @RequestMapping("/begin")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Game create(@RequestBody Game game) {
+    public Game create() {
         Game g = service.createGame();
         
         return g;
+    }
+    
+    @RequestMapping("/guess")
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Round guess(@RequestBody int gameID, int guess) {
+        Round r = service.createRound(gameID, guess);
+        return r;
     }
 //    @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)

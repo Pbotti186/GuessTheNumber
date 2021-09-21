@@ -21,7 +21,7 @@ public class Game {
     }
 
     public Game() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public void setGameID(int gameID) {

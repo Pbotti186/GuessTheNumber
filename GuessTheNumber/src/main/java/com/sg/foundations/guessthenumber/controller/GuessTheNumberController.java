@@ -12,21 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.sg.foundations.guessthenumber.data.GameDao;
+import com.sg.foundations.guessthenumber.service.GuessTheNumberServiceLayer;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author pbott
  */
 @RestController
-@RequestMapping("/begin")
+@RequestMapping("/api/guessgame")
 public class GuessTheNumberController {
-    private final GameDao dao;
-
-    public GuessTheNumberController(GameDao dao) {
-        this.dao = dao;
-    }
     
+    @Autowired
+    private final GuessTheNumberServiceLayer service;
+
+    public GuessTheNumberController(GuessTheNumberServiceLayer service) {
+        this.service = service;
+    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Game create(@RequestBody Game game) {
+        Game g = service.createGame();
+        
+        return g;
+    }
 //    @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)
 //    public Game create(@RequestBody Game game) {

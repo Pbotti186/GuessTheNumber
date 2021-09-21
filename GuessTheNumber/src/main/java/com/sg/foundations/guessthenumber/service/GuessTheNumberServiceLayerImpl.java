@@ -14,6 +14,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.sg.foundations.guessthenumber.data.GameDao;
+import com.sg.foundations.guessthenumber.data.RoundDao;
 
 /**
  *
@@ -22,39 +23,38 @@ import com.sg.foundations.guessthenumber.data.GameDao;
 @Component
 public class GuessTheNumberServiceLayerImpl implements GuessTheNumberServiceLayer{
     @Autowired
-    private GameDao dao;
+    private RoundDao roundDao;
+    @Autowired
+    private GameDao gameDao;
     
     @Override
-    public Game createGame(int guess) {
-        Game game = dao.createGame(guess);
-        
+    public Game createGame() {
+        Game game = gameDao.createGame(generateRandomGuess());
         return game;
     }
 
     @Override
-    public Round createRound(int gameID) {
-        Round round = dao.createRound(gameID);
-        
-        return round;
+    public Round createRound(int gameID, int guess) {
+        int partial = partialMatches(guess, gameDao.getGame(gameID));
+        int exact = exactMatches(guess, gameDao.getGame(gameID));
+        return roundDao.createRound(gameID, partial, exact, guess);
     }
 
     @Override
     public Game getGame(int gameID) {
-        Game game = dao.getGame(gameID);
-        
+        Game game = gameDao.getGame(gameID);
         return game;
     }
 
     @Override
     public List<Game> getAllGames() {
-        List<Game> games = dao.getAllGames();
-        
+        List<Game> games = gameDao.getAllGames();
         return games;
     }
 
     @Override
     public List<Round> getAllRoundsByGameID(int gameID) {
-        List<Round> rounds = dao.getAllRoundsByGameID(gameID);
+        List<Round> rounds = roundDao.getAllRoundsByGameID(gameID);
         
         return rounds;
     }

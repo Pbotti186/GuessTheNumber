@@ -43,7 +43,8 @@ public class GameDaoDBImpl implements GameDao{
 
     @Override
     public Game getGame(int gameID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final String INSERT_GAME = "SELECT * FROM Game WHERE game.gameID = ?";
+        return jdbc.queryForObject(INSERT_GAME, new GameMapper(), gameID);
     }
 
     @Override

@@ -14,9 +14,9 @@ import java.util.List;
  * @author pbott
  */
 public interface GuessTheNumberServiceLayer {
-    Game createGame(int guess);
+    Game createGame();
     
-    Round createRound(int gameID);
+    Round createRound(int gameID, int guess);
     
     Game getGame(int gameID);
     

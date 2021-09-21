@@ -27,3 +27,4 @@ pom.xml
 
 # application properties file
 application.properties
+/GuessTheNumber/target/

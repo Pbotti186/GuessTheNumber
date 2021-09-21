@@ -74,7 +74,7 @@ public class GuessTheNumberServiceLayerImpl implements GuessTheNumberServiceLaye
     }
 
     @Override
-    public int exactMatches(int guess, Game game) {
+    public int exactMatches(int guess, Game game) {//FIX
         int gameGuess = game.getAnswer();
         int counter = 0;
         

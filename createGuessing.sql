@@ -13,6 +13,7 @@ CREATE TABLE Round (
     dtGuess DATETIME,
     exactGuesses int,
     partialGuesses int,
+    guess int,
     PRIMARY KEY(roundID),
 	FOREIGN KEY(gameID) REFERENCES Game(gameID),
     CHECK(((exactGuesses + partialGuesses) <= 4) AND ((exactGuesses + partialGuesses) >= 0))

@@ -25,6 +25,10 @@ hs_err_pid*
 # pom File
 pom.xml
 
+#netbeans maven file
+nbactions.xml
+
 # application properties file
 application.properties
+
 /GuessTheNumber/target/

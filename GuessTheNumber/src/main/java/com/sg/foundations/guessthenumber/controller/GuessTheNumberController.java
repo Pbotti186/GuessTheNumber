@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.sg.foundations.guessthenumber.service.GuessTheNumberServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 
 /**
  *
@@ -43,8 +44,8 @@ public class GuessTheNumberController {
     @RequestMapping("/guess")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Round guess(@RequestBody int gameID, int guess) {
-        Round r = service.createRound(gameID, guess);
+    public Round guess(@RequestBody Round round) {
+        Round r = service.createRound(round.getGameID(), round.getGuess());
         return r;
     }
 //    @PostMapping

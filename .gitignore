@@ -24,3 +24,6 @@ hs_err_pid*
 
 # pom File
 pom.xml
+
+# application properties file
+application.properties

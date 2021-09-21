@@ -43,8 +43,8 @@ public class GuessTheNumberController {
     @RequestMapping("/guess")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Round guess(@RequestBody int gameID, int guess) {
-        Round r = service.createRound(gameID, guess);
+    public Round guess(@RequestBody Round round) {
+        Round r = service.createRound(round.getGameID(), round.getGuess());
         return r;
     }
 //    @PostMapping

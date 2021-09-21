@@ -28,7 +28,12 @@ public class Round {
         this.partial = partial;
         this.guess = guess;
     }
-
+    
+    public Round(int gameID, int guess) {
+        this.gameID = gameID;
+        this.guess = guess;
+    }
+    
     public Round() {
 
     }

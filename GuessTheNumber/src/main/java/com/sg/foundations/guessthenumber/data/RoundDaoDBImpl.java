@@ -6,10 +6,11 @@
 package com.sg.foundations.guessthenumber.data;
 
 import com.sg.foundations.guessthenumber.models.Round;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,7 +34,7 @@ public class RoundDaoDBImpl implements RoundDao{
     public Round createRound(int gameID, int partial, int exact, int guess) {
         Round round = new Round();
         round.setGameID(gameID);
-        round.setTimeOfGuess(Date.valueOf(LocalDate.now()));
+        round.setTimeOfGuess(Timestamp.valueOf(LocalDateTime.now()));
         round.setPartial(partial);
         round.setExact(exact);
         round.setGuess(guess);
@@ -64,9 +65,10 @@ public class RoundDaoDBImpl implements RoundDao{
             Round round = new Round();
             round.setRoundID(rs.getInt("roundID"));
             round.setGameID(rs.getInt("gameID"));
-            round.setTimeOfGuess(rs.getDate("dtGuess"));
+            round.setTimeOfGuess(Timestamp.from(rs.getDate("dtGuess").toInstant()));
             round.setExact(rs.getInt("exactGuesses"));
             round.setPartial(rs.getInt("partialGuesses"));
+            round.setGuess(rs.getInt("guess"));
             return round;
         }
     }

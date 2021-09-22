@@ -16,5 +16,6 @@ public interface GameDao {
     Game createGame(int guess);
     List<Game> getAllGames();
     Game getGame(int gameID);
+    void gameWon(int gameID);
 
 }

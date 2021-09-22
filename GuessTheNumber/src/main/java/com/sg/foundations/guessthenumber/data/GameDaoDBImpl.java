@@ -31,9 +31,9 @@ public class GameDaoDBImpl implements GameDao{
         Game game = new Game();
         game.setState(1);
         game.setAnswer(guess);
-        final String INSERT_EMPLOYEE = "INSERT INTO Game(state, answer) "
+        final String INSERT_GAME = "INSERT INTO Game(state, answer) "
                 + "VALUES(?,?)";
-        jdbc.update(INSERT_EMPLOYEE, 
+        jdbc.update(INSERT_GAME, 
                 game.getState(),
                 game.getAnswer());
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
@@ -44,6 +44,7 @@ public class GameDaoDBImpl implements GameDao{
     @Override
     public Game getGame(int gameID) {
         final String INSERT_GAME = "SELECT * FROM Game WHERE game.gameID = ?";
+        
         return jdbc.queryForObject(INSERT_GAME, new GameMapper(), gameID);
     }
 
@@ -51,6 +52,12 @@ public class GameDaoDBImpl implements GameDao{
     public List<Game> getAllGames() {
         final String SELECT_ALL_EMPLOYEES = "SELECT * FROM Game";
         return jdbc.query(SELECT_ALL_EMPLOYEES, new GameMapper());
+    }
+    
+    @Override
+    public void gameWon(int gameID) {
+        final String WIN_GAME = "UPDATE Game SET state = ? WHERE Game.gameID = ?;";
+        jdbc.update(WIN_GAME, 0, gameID);
     }
     
     public static final class GameMapper implements RowMapper<Game> {

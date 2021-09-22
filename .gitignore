@@ -32,3 +32,4 @@ nbactions.xml
 application.properties
 
 /GuessTheNumber/target/
+/GuessTheNumber/nbproject/

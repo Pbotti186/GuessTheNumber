@@ -16,5 +16,6 @@ CREATE TABLE Round (
     guess int,
     PRIMARY KEY(roundID),
 	FOREIGN KEY(gameID) REFERENCES Game(gameID),
-    CHECK(((exactGuesses + partialGuesses) <= 4) AND ((exactGuesses + partialGuesses) >= 0))
+    CHECK(((exactGuesses) <= 4) AND ((exactGuesses) >= 0)),
+    CHECK(((partialGuesses) <= 4) AND ((partialGuesses) >= 0))
 );

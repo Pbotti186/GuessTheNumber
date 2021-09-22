@@ -5,7 +5,7 @@
  */
 package com.sg.foundations.guessthenumber.models;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -15,12 +15,12 @@ import java.util.Objects;
 public class Round {
     private int roundID;
     private int gameID;
-    private Date timeOfGuess;
+    private Timestamp timeOfGuess;
     private int exact;
     private int partial;
     private int guess;
 
-    public Round(int roundID, int gameID, Date timeOfGuess, int exact, int partial, int guess) {
+    public Round(int roundID, int gameID, Timestamp timeOfGuess, int exact, int partial, int guess) {
         this.roundID = roundID;
         this.gameID = gameID;
         this.timeOfGuess = timeOfGuess;
@@ -46,7 +46,7 @@ public class Round {
         return gameID;
     }
 
-    public Date getTimeOfGuess() {
+    public Timestamp getTimeOfGuess() {
         return timeOfGuess;
     }
 
@@ -66,7 +66,7 @@ public class Round {
         this.gameID = gameID;
     }
 
-    public void setTimeOfGuess(Date timeOfGuess) {
+    public void setTimeOfGuess(Timestamp timeOfGuess) {
         this.timeOfGuess = timeOfGuess;
     }
 

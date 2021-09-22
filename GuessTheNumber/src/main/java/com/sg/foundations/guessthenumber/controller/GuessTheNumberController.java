@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.sg.foundations.guessthenumber.service.GuessTheNumberServiceLayer;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -43,14 +45,33 @@ public class GuessTheNumberController {
     
     @RequestMapping("/guess")
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public Round guess(@RequestBody Round round) {
         Round r = service.createRound(round.getGameID(), round.getGuess());
         return r;
     }
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Game create(@RequestBody Game game) {
-//        return dao.add(game);
-//    }
+    
+    @RequestMapping("/game")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Game> getAllGames() {
+        List<Game> allGames = service.getAllGames();
+        return allGames;
+    }
+    
+    @RequestMapping("/game/{id}")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Game getAllGames(@PathVariable int id) {
+        Game game = service.getGame(id);
+        return game;
+    }
+    
+    @RequestMapping("/rounds/{id}")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Round> getAllRounds(@PathVariable int id) {
+        List<Round> allRounds = service.getAllRoundsByGameID(id);
+        return allRounds;
+    }
 }

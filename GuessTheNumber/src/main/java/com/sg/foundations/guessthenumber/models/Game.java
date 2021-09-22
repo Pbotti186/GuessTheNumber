@@ -11,7 +11,7 @@ package com.sg.foundations.guessthenumber.models;
  */
 public class Game {
     private int gameID;
-    private int state; // Int to accomodate tinyint in db
+    private int state; // Int to accomodate tinyint in , 1 = in progress, 0 = not in progress
     private int answer;
 
     public Game(int gameID, int state, int answer) {
